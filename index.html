@@ -615,6 +615,71 @@
 
       .project-actions {
         margin-top: 34px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .project-entry {
+        display: flex;
+        min-height: 180px;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 28px;
+        border: 1px solid var(--light-line);
+        background: var(--warm-white);
+        color: var(--charcoal);
+        text-decoration: none;
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          background 0.3s;
+      }
+
+      .project-entry:hover {
+        transform: translateY(-4px);
+        border-color: var(--terracotta);
+        background: var(--cream);
+      }
+
+      .project-entry-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 14px;
+      }
+
+      .project-entry-title {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
+        line-height: 1.18;
+        margin-bottom: 12px;
+      }
+
+      .project-entry-text {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .project-entry-arrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .project-entry-arrow svg {
+        transition: transform 0.3s;
+      }
+
+      .project-entry:hover .project-entry-arrow svg {
+        transform: translateX(4px);
       }
 
       .highlight-item {
@@ -779,6 +844,9 @@
         .project-card {
           grid-template-columns: 1fr;
         }
+        .project-actions {
+          grid-template-columns: 1fr;
+        }
         .info-grid {
           grid-template-columns: 1fr;
           gap: 40px;
@@ -806,7 +874,7 @@
         <div class="profile-photo-wrap">
           <img
             src="./image/profile.png"
-            alt="Natnicha Cruttaka - UX/UI Designer."
+            alt="Natnicha Cruttaka - UX/UI Designer"
           />
         </div>
         <p class="hero-role">UX / UI Designer</p>
@@ -823,6 +891,11 @@
           Designing experiences<br />that <span>feel right</span><br />for
           people.
         </h2>
+        <div class="contact-grid">
+          <div class="contact-item"><span class="dot"></span>cr.natnicha@gmail.com</div>
+          <div class="contact-item"><span class="dot"></span>094-850-9213</div>
+          <div class="contact-item"><span class="dot"></span>Bangkok, Thailand</div>
+        </div>
         <div class="hero-actions">
           <a href="mailto:cr.natnicha@gmail.com" class="cta-btn">
             Contact
@@ -1020,29 +1093,49 @@
               </div>
             </div>
             <div class="project-actions">
-              <a href="uxui.html" class="cta-btn">
-                UX/UI Projects
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+              <a href="uxui.html" class="project-entry">
+                <span>
+                  <span class="project-entry-label">Digital Experience</span>
+                  <span class="project-entry-title">UX/UI Projects</span>
+                  <span class="project-entry-text">
+                    System redesigns, website improvements, and interface
+                    concepts focused on clearer user workflows.
+                  </span>
+                </span>
+                <span class="project-entry-arrow">
+                  View Work
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </a>
-              <a href="graphic.html" class="cta-btn">
-                Graphic Design Projects
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+              <a href="graphic.html" class="project-entry">
+                <span>
+                  <span class="project-entry-label">Visual Design</span>
+                  <span class="project-entry-title">Graphic Design Projects</span>
+                  <span class="project-entry-text">
+                    Promotional materials, product visuals, branded assets, and
+                    social media design for ThaiGL.
+                  </span>
+                </span>
+                <span class="project-entry-arrow">
+                  View Work
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </a>
             </div>
           </div>
