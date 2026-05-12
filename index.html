@@ -1134,16 +1134,33 @@
         .querySelectorAll(".reveal")
         .forEach((element) => revealObserver.observe(element));
 
-      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const smoothScrollTo = (targetY, duration = 900) => {
+        const startY = window.scrollY;
+        const distance = targetY - startY;
+        const startTime = performance.now();
+        const easeInOut = (t) =>
+          t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        const step = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          window.scrollTo(0, startY + distance * easeInOut(progress));
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          }
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      document.querySelectorAll(".cta-btn.secondary").forEach((link) => {
         link.addEventListener("click", (event) => {
           const target = document.querySelector(link.getAttribute("href"));
           if (!target) return;
 
           event.preventDefault();
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+          smoothScrollTo(target.getBoundingClientRect().top + window.scrollY);
         });
       });
     </script>
