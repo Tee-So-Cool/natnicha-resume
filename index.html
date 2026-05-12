@@ -63,7 +63,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 60px 56px;
+        padding: 90px 90px 90px;
         position: relative;
         overflow: hidden;
       }
@@ -120,25 +120,37 @@
       .profile-photo-wrap {
         width: 200px;
         height: 260px;
-        margin-bottom: 40px;
+        margin-bottom: 160px;
         position: relative;
+        margin-left: 48px;
       }
 
       .profile-photo-wrap::before {
         content: "";
         position: absolute;
-        inset: -8px;
+        top: -8px;
+        left: 50%;
+        width: calc(150% + 16px);
+        height: calc(150% + 16px);
         border: 1px solid rgba(212, 184, 150, 0.3);
         border-radius: 2px;
+        transform: translateX(-50%);
+        z-index: 1;
+        pointer-events: none;
       }
 
       .profile-photo-wrap img {
-        width: 100%;
-        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 150%;
+        height: 150%;
         object-fit: cover;
-        object-position: top;
+        object-position: top center;
         display: block;
+        transform: translateX(-50%);
         filter: grayscale(20%) contrast(1.05);
+        z-index: 0;
       }
 
       .hero-name {
@@ -309,7 +321,7 @@
       .container {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 0 56px;
+        padding: 0 32px;
       }
 
       .section-label {
@@ -653,8 +665,10 @@
 
       .project-entry-title {
         font-family: "Playfair Display", serif;
+        display: block;
         font-size: 24px;
         line-height: 1.18;
+        margin-top: 18px;
         margin-bottom: 12px;
       }
 
@@ -828,8 +842,12 @@
           min-height: auto;
         }
         .hero-left {
-          padding: 80px 32px 60px;
-          min-height: 60vh;
+          padding: 90px 90px 90px;
+          min-height: 100vh;
+        }
+        .profile-photo-wrap {
+          margin-left: 38px;
+          margin-bottom: 160px;
         }
         .hero-right {
           padding: 60px 32px;
@@ -870,7 +888,6 @@
     <!-- ── HERO ── -->
     <section class="hero">
       <div class="hero-left">
-        <span class="nav-label">Portfolio - 2026</span>
         <div class="profile-photo-wrap">
           <img
             src="./image/profile.png"
@@ -891,11 +908,6 @@
           Designing experiences<br />that <span>feel right</span><br />for
           people.
         </h2>
-        <div class="contact-grid">
-          <div class="contact-item"><span class="dot"></span>cr.natnicha@gmail.com</div>
-          <div class="contact-item"><span class="dot"></span>094-850-9213</div>
-          <div class="contact-item"><span class="dot"></span>Bangkok, Thailand</div>
-        </div>
         <div class="hero-actions">
           <a href="mailto:cr.natnicha@gmail.com" class="cta-btn">
             Contact
