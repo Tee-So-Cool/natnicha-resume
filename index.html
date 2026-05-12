@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natnicha Cruttaka — UX/UI Designer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f5f0e8;
+        --warm-white: #fdfaf5;
+        --charcoal: #1a1a1a;
+        --sand: #d4b896;
+        --terracotta: #c4785a;
+        --sage: #7a9e7e;
+        --muted: #8a8278;
+        --light-line: #e8e2d8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--warm-white);
+        color: var(--charcoal);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      /* ── NOISE TEXTURE OVERLAY ── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 999;
+        opacity: 0.5;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-left {
+        background: var(--charcoal);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px 56px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-left::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(196, 120, 90, 0.15) 0%,
+          transparent 70%
+        );
+      }
+
+      .hero-right {
+        background: var(--cream);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 60px 56px;
+        position: relative;
+      }
+
+      .hero-right::after {
+        content: "UX/UI";
+        position: absolute;
+        top: 40px;
+        right: -20px;
+        font-family: "Playfair Display", serif;
+        font-size: 120px;
+        font-weight: 700;
+        color: rgba(196, 120, 90, 0.06);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .nav-label {
+        position: absolute;
+        top: 40px;
+        left: 56px;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--sand);
+        opacity: 0.7;
+      }
+
+      .profile-photo-wrap {
+        width: 200px;
+        height: 260px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .profile-photo-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border: 1px solid rgba(212, 184, 150, 0.3);
+        border-radius: 2px;
+      }
+
+      .profile-photo-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        filter: grayscale(20%) contrast(1.05);
+      }
+
+      .hero-name {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 400;
+        color: var(--warm-white);
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+
+      .hero-name em {
+        font-style: italic;
+        color: var(--sand);
+      }
+
+      .hero-role {
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 32px;
+      }
+
+      .hero-bio {
+        font-size: 14px;
+        line-height: 1.8;
+        color: rgba(245, 240, 232, 0.65);
+        max-width: 320px;
+      }
+
+      /* Right column intro */
+      .intro-tag {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 16px;
+      }
+
+      .intro-headline {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(28px, 3vw, 42px);
+        font-weight: 400;
+        line-height: 1.25;
+        margin-bottom: 32px;
+        color: var(--charcoal);
+      }
+
+      .intro-headline span {
+        font-style: italic;
+        color: var(--terracotta);
+      }
+
+      .contact-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 32px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .contact-item .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--terracotta);
+        flex-shrink: 0;
+      }
+
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--charcoal);
+        color: var(--warm-white);
+        padding: 14px 28px;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        width: fit-content;
+        margin: 5px;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+
+      .cta-btn:hover {
+        background: var(--terracotta);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .cta-btn.secondary {
+        background: transparent;
+        color: var(--charcoal);
+        border: 1px solid var(--charcoal);
+      }
+
+      .cta-btn.secondary:hover {
+        background: var(--charcoal);
+        color: var(--warm-white);
+      }
+
+      .cta-btn svg {
+        transition: transform 0.3s;
+      }
+      .cta-btn:hover svg {
+        transform: translateX(4px);
+      }
+
+      /* ── SCROLL INDICATOR ── */
+      .scroll-hint {
+        position: absolute;
+        bottom: 40px;
+        left: 25%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--sand), transparent);
+        animation: scrollPulse 1.8s ease-in-out infinite;
+      }
+
+      @keyframes scrollPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scaleY(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1.1);
+        }
+      }
+
+      /* ── SECTION LAYOUT ── */
+      section {
+        padding: 100px 0;
+      }
+
+      section.hero {
+        padding: 0;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 56px;
+      }
+
+      .section-label {
+        font-size: 10px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 12px;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 400;
+        line-height: 1.15;
+        margin-bottom: 60px;
+      }
+
+      .section-title em {
+        font-style: italic;
+        color: var(--terracotta);
+      }
+
+      /* ── EXPERIENCE ── */
+      .experience-section {
+        background: var(--charcoal);
+        color: var(--warm-white);
+      }
+      .experience-section .section-title {
+        color: var(--warm-white);
+      }
+      .experience-section .section-label {
+        color: var(--sand);
+      }
+
+      .exp-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+
+      .exp-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(212, 184, 150, 0.1);
+        padding: 44px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.4s;
+      }
+
+      .exp-card:hover {
+        background: rgba(196, 120, 90, 0.07);
+      }
+
+      .exp-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--terracotta);
+        transition: height 0.4s ease;
+      }
+
+      .exp-card:hover::before {
+        height: 100%;
+      }
+
+      .exp-num {
+        font-family: "Playfair Display", serif;
+        font-size: 64px;
+        font-weight: 700;
+        color: rgba(212, 184, 150, 0.08);
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .exp-company {
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--sand);
+        margin-bottom: 8px;
+      }
+
+      .exp-role {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        color: var(--warm-white);
+        margin-bottom: 8px;
+      }
+
+      .exp-period {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .exp-period::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 1px;
+        background: var(--muted);
+      }
+
+      .exp-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .exp-list li {
+        font-size: 13px;
+        line-height: 1.65;
+        color: rgba(245, 240, 232, 0.6);
+        padding-left: 16px;
+        position: relative;
+      }
+
+      .exp-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--terracotta);
+        font-size: 11px;
+      }
+
+      /* ── SKILLS ── */
+      .skills-section {
+        background: var(--cream);
+      }
+
+      .skills-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+
+      .skill-category {
+        margin-bottom: 40px;
+      }
+
+      .skill-cat-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--light-line);
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-tag {
+        font-size: 12px;
+        padding: 8px 16px;
+        border: 1px solid var(--charcoal);
+        background: transparent;
+        color: var(--charcoal);
+        transition: all 0.25s;
+        cursor: default;
+      }
+
+      .skill-tag:hover {
+        background: var(--charcoal);
+        color: var(--warm-white);
+      }
+
+      .skill-tag.accent {
+        border-color: var(--terracotta);
+        color: var(--terracotta);
+      }
+
+      .skill-tag.accent:hover {
+        background: var(--terracotta);
+        color: var(--warm-white);
+      }
+
+      /* Tools grid */
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .tool-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 20px 16px;
+        background: var(--warm-white);
+        border: 1px solid var(--light-line);
+        text-align: center;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+
+      .tool-item:hover {
+        border-color: var(--terracotta);
+        transform: translateY(-3px);
+      }
+
+      .tool-icon {
+        font-size: 28px;
+        margin-bottom: 4px;
+      }
+
+      .tool-name {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: var(--charcoal);
+      }
+
+      .tool-desc {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      /* ── PROJECT ── */
+      .project-section {
+        background: var(--warm-white);
+      }
+
+      .project-card {
+        border: 1px solid var(--light-line);
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+
+      .project-card:hover {
+        border-color: var(--terracotta);
+      }
+
+      .project-left {
+        background: var(--charcoal);
+        padding: 60px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-left::before {
+        content: "✦";
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 80px;
+        color: rgba(196, 120, 90, 0.1);
+      }
+
+      .project-left .tag {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 16px;
+      }
+
+      .project-left h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        color: var(--warm-white);
+        line-height: 1.3;
+      }
+
+      .project-right {
+        padding: 60px 48px;
+      }
+
+      .project-right p {
+        font-size: 15px;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 32px;
+      }
+
+      .project-highlights {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .project-actions {
+        margin-top: 34px;
+      }
+
+      .highlight-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .highlight-num {
+        font-family: "Playfair Display", serif;
+        font-size: 13px;
+        color: var(--terracotta);
+        padding-top: 2px;
+      }
+
+      .highlight-text {
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--charcoal);
+      }
+
+      /* ── EDUCATION & LANGUAGES ── */
+      .info-section {
+        background: var(--cream);
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+
+      .edu-card {
+        padding: 40px;
+        border: 1px solid var(--light-line);
+        background: var(--warm-white);
+      }
+
+      .edu-school {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .edu-degree {
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 8px;
+      }
+
+      .edu-year {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .lang-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .lang-item {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .lang-name {
+        font-size: 14px;
+        font-weight: 500;
+        width: 80px;
+        flex-shrink: 0;
+      }
+
+      .lang-label {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 1px;
+        margin-left: 4px;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--charcoal);
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .footer-name {
+        font-family: "Playfair Display", serif;
+        font-size: 14px;
+        color: var(--sand);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .footer-contact {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+
+      .footer-contact a {
+        color: rgba(245, 240, 232, 0.5);
+        text-decoration: none;
+        font-size: 12px;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+      }
+
+      .footer-contact a:hover {
+        color: var(--terracotta);
+      }
+
+      .footer-copy {
+        font-size: 11px;
+        color: rgba(245, 240, 232, 0.25);
+        letter-spacing: 1px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.is-shown {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── FADE IN ANIMATIONS ── */
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .hero-left {
+          padding: 80px 32px 60px;
+          min-height: 60vh;
+        }
+        .hero-right {
+          padding: 60px 32px;
+        }
+        .exp-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+        .info-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .container {
+          padding: 0 32px;
+        }
+        .tools-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-right::after {
+          display: none;
+        }
+        .scroll-hint {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-left">
+        <span class="nav-label">Portfolio - 2026</span>
+        <div class="profile-photo-wrap">
+          <img
+            src="./image/profile.png"
+            alt="Natnicha Cruttaka - UX/UI Designer"
+          />
+        </div>
+        <p class="hero-role">UX / UI Designer</p>
+        <h1 class="hero-name">Natnicha<br /><em>Cruttaka</em></h1>
+        <p class="hero-bio">
+          A detail-oriented professional passionate about understanding user
+          behavior and translating insights into meaningful digital experiences.
+        </p>
+      </div>
+
+      <div class="hero-right">
+        <p class="intro-tag">Available for opportunities</p>
+        <h2 class="intro-headline">
+          Designing experiences<br />that <span>feel right</span><br />for
+          people.
+        </h2>
+        <div class="contact-grid">
+          <div class="contact-item"><span class="dot"></span>cr.natnicha@gmail.com</div>
+          <div class="contact-item"><span class="dot"></span>094-850-9213</div>
+          <div class="contact-item"><span class="dot"></span>Bangkok, Thailand</div>
+        </div>
+        <div class="hero-actions">
+          <a href="mailto:cr.natnicha@gmail.com" class="cta-btn">
+            Contact
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a href="#projects" class="cta-btn secondary">
+            View Projects
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section class="experience-section">
+      <div class="container">
+        <p class="section-label reveal">Work Experience</p>
+        <h2 class="section-title reveal">Where I've <em>made an impact</em></h2>
+        <div class="exp-grid">
+          <div class="exp-card reveal">
+            <span class="exp-num">01</span>
+            <p class="exp-company">ThaiGL</p>
+            <h3 class="exp-role">UX/UI Designer</h3>
+            <p class="exp-period">Jul 2024 – Nov 2025 · Bangkok, Thailand</p>
+            <ul class="exp-list">
+              <li>
+                Analyzed user workflows to identify key pain points affecting
+                usability and operational efficiency
+              </li>
+              <li>
+                Proposed improvements to streamline processes and enhance
+                overall system performance
+              </li>
+              <li>
+                Contributed to reducing workflow complexity and improving user
+                adoption
+              </li>
+              <li>
+                Collaborated with cross-functional teams to align user needs
+                with business requirements
+              </li>
+            </ul>
+          </div>
+          <div class="exp-card reveal">
+            <span class="exp-num">02</span>
+            <p class="exp-company">Sansuisha</p>
+            <h3 class="exp-role">UI / Web Design Intern</h3>
+            <p class="exp-period">Apr 2023 – Sep 2023 · Utsunomiya, Japan</p>
+            <ul class="exp-list">
+              <li>Supported UI design and web layout development</li>
+              <li>Created visual assets and improved interface consistency</li>
+              <li>Worked with team members to deliver project requirements</li>
+              <li>
+                Gained hands-on international experience in a Japanese design
+                studio
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SKILLS ── -->
+    <section class="skills-section">
+      <div class="container">
+        <div class="skills-layout">
+          <div>
+            <p class="section-label reveal">Capabilities</p>
+            <h2 class="section-title reveal">Skills &<br /><em>Expertise</em></h2>
+
+            <div class="skill-category reveal">
+              <p class="skill-cat-label">UX Design</p>
+              <div class="skill-tags">
+                <span class="skill-tag accent">User Research</span>
+                <span class="skill-tag accent">Information Architecture</span>
+                <span class="skill-tag accent">Wireframing & Prototyping</span>
+                <span class="skill-tag accent">Usability Testing</span>
+                <span class="skill-tag accent">UX Writing</span>
+              </div>
+            </div>
+
+            <div class="skill-category reveal">
+              <p class="skill-cat-label">Soft Skills</p>
+              <div class="skill-tags">
+                <span class="skill-tag">Customer Insight Analysis</span>
+                <span class="skill-tag">Problem Solving</span>
+                <span class="skill-tag">Analytical Thinking</span>
+                <span class="skill-tag">Cross-functional Collaboration</span>
+                <span class="skill-tag">Communication & Presentation</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="section-label reveal" style="margin-top: 0; padding-top: 4px">
+              Tools
+            </p>
+            <div style="height: 48px"></div>
+            <div class="tools-grid reveal">
+              <div class="tool-item">
+                <div class="tool-icon">🎨</div>
+                <div class="tool-name">Figma</div>
+                <div class="tool-desc">UX/UI Design</div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">🖼️</div>
+                <div class="tool-name">Photoshop</div>
+                <div class="tool-desc">Image Editing</div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">✏️</div>
+                <div class="tool-name">Illustrator</div>
+                <div class="tool-desc">Vector Design</div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">🎬</div>
+                <div class="tool-name">CapCut</div>
+                <div class="tool-desc">Customer Insight</div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">📊</div>
+                <div class="tool-name">Excel</div>
+                <div class="tool-desc">Data Analysis</div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">🎭</div>
+                <div class="tool-name">Canva</div>
+                <div class="tool-desc">Presentation</div>
+              </div>
+              <div class="tool-item">
+                <div class="tool-icon">🧊</div>
+                <div class="tool-name">Blender</div>
+                <div class="tool-desc">3D Design</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROJECT ── -->
+    <section class="project-section" id="projects">
+      <div class="container">
+        <p class="section-label reveal">Case Study</p>
+        <h2 class="section-title reveal">Featured <em>Project</em></h2>
+        <div class="project-card reveal">
+          <div class="project-left">
+            <p class="tag">UX Research</p>
+            <h3>Customer Experience<br />Improvement</h3>
+          </div>
+          <div class="project-right">
+            <p>
+              A comprehensive UX research initiative focused on analyzing a
+              digital service platform to uncover friction points in the user
+              journey and identify opportunities for meaningful improvement.
+            </p>
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <span class="highlight-num">01</span>
+                <span class="highlight-text"
+                  >Analyzed full user journey on a digital service platform to
+                  identify the most common pain points and drop-off
+                  moments</span
+                >
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">02</span>
+                <span class="highlight-text"
+                  >Identified opportunities to reduce friction and improve user
+                  engagement at key touchpoints</span
+                >
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">03</span>
+                <span class="highlight-text"
+                  >Proposed actionable UX solutions to enhance user satisfaction
+                  and unlock new business growth opportunities</span
+                >
+              </div>
+            </div>
+            <div class="project-actions">
+              <a href="uxui.html" class="cta-btn">
+                UX/UI Projects
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+              <a href="graphic.html" class="cta-btn">
+                Graphic Design Projects
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EDUCATION & LANGUAGES ── -->
+    <section class="info-section">
+      <div class="container">
+        <div class="info-grid">
+          <div>
+            <p class="section-label reveal">Education</p>
+            <h2 class="section-title reveal" style="font-size: clamp(24px, 3vw, 36px)">
+              Academic<br /><em>Background</em>
+            </h2>
+            <div class="edu-card reveal">
+              <p class="edu-degree">Computer Engineering</p>
+              <h3 class="edu-school">
+                Thai-Nichi Institute<br />of Technology
+              </h3>
+              <p class="edu-year">2020 – 2023</p>
+            </div>
+          </div>
+          <div>
+            <p class="section-label reveal">Languages</p>
+            <h2 class="section-title reveal" style="font-size: clamp(24px, 3vw, 36px)">
+              Language<br /><em>Proficiency</em>
+            </h2>
+            <div class="lang-list reveal">
+              <div class="lang-item">
+                <span class="lang-name">Thai</span>
+                <span class="lang-label">Native</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">English</span>
+                <span class="lang-label">Intermediate</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-name">Japanese</span>
+                <span class="lang-label">Basic (N5)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="container">
+        <p class="footer-name">Natnicha Cruttaka</p>
+        <div class="footer-contact">
+          <a href="mailto:cr.natnicha@gmail.com">cr.natnicha@gmail.com</a>
+          <a href="tel:0948509213">094-850-9213</a>
+          <a
+            href="https://www.figma.com/proto/S3qfxxup9PraNDQXe3FINf/Portfolio?page-id=389%3A307&node-id=389-328&viewport=60%2C180%2C0.17&t=OjT77zcskCvGz7wV-1&scaling=min-zoom&content-scaling=fixed"
+            target="_blank"
+            rel="noopener noreferrer"
+            >My Portfolio ↗</a
+          >
+        </div>
+        <p class="footer-copy">
+          © 2025 Natnicha Cruttaka · UX/UI Designer · Bangkok, Thailand
+        </p>
+      </div>
+    </footer>
+    <script>
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("is-shown");
+              }, index * 70);
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((element) => revealObserver.observe(element));
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (!target) return;
+
+          event.preventDefault();
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UX/UI Projects | Natnicha Cruttaka</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f5f0e8;
+        --warm-white: #fdfaf5;
+        --charcoal: #1a1a1a;
+        --sand: #d4b896;
+        --terracotta: #c4785a;
+        --muted: #8a8278;
+        --light-line: #e8e2d8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--warm-white);
+        color: var(--charcoal);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 999;
+        opacity: 0.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 64px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        padding: 24px 0;
+        background: rgba(253, 250, 245, 0.86);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(232, 226, 216, 0.78);
+      }
+
+      .topbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .brand-link,
+      .back-link {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .brand-link {
+        color: var(--muted);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--charcoal);
+        transition: color 0.25s;
+      }
+
+      .back-link:hover {
+        color: var(--terracotta);
+      }
+
+      .hero {
+        min-height: 92vh;
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        align-items: stretch;
+        padding-top: 74px;
+        background: var(--cream);
+      }
+
+      .hero-copy {
+        background: var(--charcoal);
+        color: var(--warm-white);
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding: 72px 56px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-copy::after {
+        content: "UX/UI";
+        position: absolute;
+        top: 68px;
+        left: -14px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(70px, 11vw, 148px);
+        font-weight: 700;
+        color: rgba(212, 184, 150, 0.07);
+        line-height: 0.9;
+        pointer-events: none;
+      }
+
+      .section-label {
+        font-size: 10px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 14px;
+      }
+
+      .hero-copy .section-label {
+        color: var(--sand);
+      }
+
+      h1,
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-weight: 400;
+      }
+
+      .hero-title {
+        font-size: clamp(42px, 5.8vw, 72px);
+        line-height: 1.02;
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .hero-title em {
+        color: var(--sand);
+        font-style: italic;
+      }
+
+      .hero-text {
+        max-width: 440px;
+        font-size: 15px;
+        line-height: 1.85;
+        color: rgba(245, 240, 232, 0.68);
+        position: relative;
+      }
+
+      .hero-image {
+        min-height: 560px;
+        padding: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-image-frame {
+        width: 100%;
+        max-width: 760px;
+        background: transparent;
+        padding: 12px;
+      }
+
+      .hero-image img,
+      .uxui-visual img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .intro-strip {
+        background: var(--warm-white);
+        border-top: 1px solid var(--light-line);
+        border-bottom: 1px solid var(--light-line);
+        padding: 38px 0;
+      }
+
+      .intro-strip .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .intro-strip p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 660px;
+      }
+
+      .project-section {
+        padding: 96px 0;
+      }
+
+      .project-section.alt {
+        background: var(--cream);
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+        gap: 56px;
+        align-items: center;
+      }
+
+      .project-grid.reverse {
+        grid-template-columns: minmax(0, 1.22fr) minmax(260px, 0.78fr);
+      }
+
+      .project-grid.reverse .project-copy {
+        order: 2;
+      }
+
+      .project-kicker {
+        font-size: 10px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--terracotta);
+        margin-bottom: 16px;
+      }
+
+      .project-copy h2 {
+        font-size: clamp(30px, 4vw, 48px);
+        line-height: 1.12;
+        margin-bottom: 22px;
+      }
+
+      .project-copy p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.85;
+        margin-bottom: 16px;
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .meta-tag {
+        border: 1px solid var(--charcoal);
+        padding: 8px 14px;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .uxui-visual {
+        background: transparent;
+        padding: 12px;
+      }
+
+      .footer {
+        background: var(--charcoal);
+        padding: 48px 0;
+        text-align: center;
+      }
+
+      .footer a {
+        color: rgba(245, 240, 232, 0.68);
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.25s;
+      }
+
+      .footer a:hover {
+        color: var(--terracotta);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.is-shown {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .project-grid,
+        .project-grid.reverse {
+          grid-template-columns: 1fr;
+        }
+
+        .project-grid.reverse .project-copy {
+          order: 0;
+        }
+
+        .hero-copy {
+          padding: 72px 32px 48px;
+        }
+
+        .hero-image {
+          min-height: auto;
+          padding: 32px;
+        }
+
+        .intro-strip .container {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .project-section {
+          padding: 72px 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: min(100% - 40px, 1120px);
+        }
+
+        .topbar {
+          padding: 18px 0;
+        }
+
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .hero {
+          padding-top: 96px;
+        }
+
+        .hero-copy {
+          padding: 56px 24px 42px;
+        }
+
+        .hero-image {
+          padding: 24px 20px 40px;
+        }
+
+        .project-grid {
+          gap: 32px;
+        }
+
+        .meta-tag {
+          font-size: 10px;
+          padding: 7px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand-link" href="index.html">Natnicha Cruttaka</a>
+        <a class="back-link" href="index.html" aria-label="Back to homepage">
+          <span aria-hidden="true">&larr;</span>
+          Back to Index
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="section-label reveal">UX/UI Projects</p>
+          <h1 class="hero-title reveal">UX/UI<br /><em>Projects</em></h1>
+          <p class="hero-text reveal">
+            A selection of my UX/UI design works, including system redesigns,
+            website improvements, and visual marketing assets.
+          </p>
+        </div>
+        <div class="hero-image">
+          <div class="hero-image-frame reveal">
+            <img src="image/uxui1.png" alt="UX/UI project collection preview" />
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-strip">
+        <div class="container">
+          <p class="section-label reveal">Selected UX/UI Works</p>
+          <p class="reveal">
+            These works focus on clearer interfaces, smoother workflows, and
+            visual systems that support both users and business goals.
+          </p>
+        </div>
+      </section>
+
+      <section class="project-section">
+        <div class="container project-grid">
+          <div class="project-copy reveal">
+            <p class="project-kicker">System Redesign</p>
+            <h2>Redesign RIS<br />(Hospital Radiology System)</h2>
+            <p>
+              A redesign of the hospital's Radiology Information System to
+              improve usability, clarity, and workflow efficiency.
+            </p>
+            <p>
+              Only high-level mockups are shown here due to confidentiality.
+              Full UX process can be presented during the interview.
+            </p>
+            <div class="project-meta">
+              <span class="meta-tag">Healthcare</span>
+              <span class="meta-tag">Workflow</span>
+              <span class="meta-tag">System UI</span>
+            </div>
+          </div>
+          <figure class="uxui-visual reveal">
+            <img src="image/uxui2.png" alt="RIS hospital radiology system redesign mockup" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="project-section alt">
+        <div class="container project-grid reverse">
+          <div class="project-copy reveal">
+            <p class="project-kicker">Website Redesign</p>
+            <h2>Company Website Redesign<br />(Thai GL)</h2>
+            <p>
+              A modern redesign of the company's public website, focusing on
+              clearer navigation, improved layout, and updated visual identity.
+            </p>
+            <p>
+              The mockups shown here are concept designs created during the
+              development process.
+            </p>
+            <div class="project-meta">
+              <span class="meta-tag">Website</span>
+              <span class="meta-tag">Navigation</span>
+              <span class="meta-tag">Visual Identity</span>
+            </div>
+          </div>
+          <figure class="uxui-visual reveal">
+            <img src="image/uxui3.png" alt="Thai GL company website redesign mockup" />
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="index.html">Back to Portfolio</a>
+    </footer>
+    <script>
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.classList.add("is-shown");
+              }, index * 70);
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((element) => revealObserver.observe(element));
+    </script>
+  </body>
+</html>
